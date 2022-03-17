@@ -1,6 +1,6 @@
 var Vertex = function (options) {
 	this._vertexFormat = Cesium.VertexFormat.clone(
-		Cesium.defaultValue(options.vertexFormat, Cesium.VertexFormat.DEFAULT)
+		Cesium.defaultValue(options.vertexFormat, Cesium.VertexFormat.POSITION_AND_COLOR)
 	);
 
 	if (!Cesium.defined(options)) {
@@ -136,62 +136,6 @@ function createGeometryFromPositions(ellipsoid, positions, colors) {
  * @see MultiColorTriangleGeometry#createGeometry
  *
  * @demo {@link http://cesiumjs.org/Cesium/Apps/Sandcastle/index.html?src=development/Multi-Color%20Triangles.html|Cesium Sandcastle MultiColorTriangle Demo}
- *
- * @example
- *var vertices = [
- *       new Cesium.Vertex({
- *           vertexFormat: Cesium.VertexFormat.POSITION_AND_COLOR,
- *           position: Cesium.Cartesian3.fromDegrees(-115.0, 37.0),
- *           color: Cesium.Color.RED.withAlpha(180/255)
- *       }),
- *       new Cesium.Vertex({
- *           vertexFormat: Cesium.VertexFormat.POSITION_AND_COLOR,
- *           position: Cesium.Cartesian3.fromDegrees(-115.0, 32.0),
- *           color: Cesium.Color.BLUE.withAlpha(180/255)
- *       }),
- *       new Cesium.Vertex({
- *           vertexFormat: Cesium.VertexFormat.POSITION_AND_COLOR,
- *           position: Cesium.Cartesian3.fromDegrees(-107.0, 33.0),
- *           color: Cesium.Color.GREEN.withAlpha(180/255)
- *       }),
- *       new Cesium.Vertex({
- *           vertexFormat: Cesium.VertexFormat.POSITION_AND_COLOR,
- *           position: Cesium.Cartesian3.fromDegrees(-102.0, 31.0),
- *           color: Cesium.Color.ORANGE.withAlpha(180/255)
- *       }),
- *       new Cesium.Vertex({
- *           vertexFormat: Cesium.VertexFormat.POSITION_AND_COLOR,
- *           position: Cesium.Cartesian3.fromDegrees(-102.0, 35.0),
- *           color: Cesium.Color.AQUA.withAlpha(180/255)
- *       })
- *   ];
- *
- *   var polygonVertices = [[0,1,2], [0,2,4], [3,2,4], [1,2,3]];
- *
- *   var triangles = [];
- *
- *   for(var i=0;i<polygonVertices.length;i++){
- *       var verts = [];
- *       for(var j=0;j<polygonVertices[i].length;j++){
- *           var index=polygonVertices[i][j];
- *           verts.push(vertices[index]);
- *       }
- *       triangles.push(new Cesium.Triangle({
- *           vertices : verts
- *       }));
- *   }
- *
- *   scene.primitives.add(
- *       new Cesium.Primitive({
- *           geometryInstances : new Cesium.GeometryInstance({
- *               geometry : new Cesium.MultiColorTriangleGeometry({
- *                   triangles : triangles
- *               })
- *           }),
- *           appearance : new Cesium.MultiColorTriangleAppearance()
- *       })
- *
- *   );
  */
 var MultiColorTriangleGeometry = function (options) {
 	if (!Cesium.defined(options)) {
@@ -335,27 +279,6 @@ void main()
  * @param {RenderState} [options.renderState] Optional render state to override the default render state.
  *
  *@demo {@link http://cesiumjs.org/Cesium/Apps/Sandcastle/index.html?src=Polyline%20Color.html|Cesium Sandcastle Polyline Color Appearance Demo}
- *
- * @example
- * // A solid white line segment
- * var primitive = new Cesium.Primitive({
- *   geometryInstances : new Cesium.GeometryInstance({
- *     geometry : new Cesium.PolylineGeometry({
- *       positions : Cesium.Cartesian3.fromDegreesArray([
- *         0.0, 0.0,
- *         5.0, 0.0
- *       ]),
- *       width : 10.0,
- *       vertexFormat : Cesium.MultiColorTriangleAppearance.VERTEX_FORMAT
- *     }),
- *     attributes : {
- *       color : Cesium.ColorGeometryInstanceAttribute.fromColor(new Cesium.Color(1.0, 1.0, 1.0, 1.0))
- *     }
- *   }),
- *   appearance : new Cesium.MultiColorTriangleAppearance({
- *     translucent : false
- *   })
- * });
  */
 var MultiColorTriangleAppearance = function (options) {
 	options = Cesium.defaultValue(options, Cesium.defaultValue.EMPTY_OBJECT);
